@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 3.8)
 
-PROJECT(dmcpp17)
+PROJECT(dmcpp20)
 
 cmake_policy(SET CMP0026 OLD)
 
@@ -16,20 +16,20 @@ ENDIF()
 
 ModuleImport("dmlog" "thirdparty/dmlog")
 ModuleImport("dmtest" "thirdparty/dmtest")
-LibImport("dmcpp17" "src")
+LibImport("dmcpp20" "src")
 
 
 IF(WIN32)
-    ExeImport("test" "dmcpp17;dmtest")
+    ExeImport("test" "dmcpp20;dmtest")
 
     IF(MSVC)
         create_target_launcher(dmstringtest WORKING_DIRECTORY "${PROJECT_SOURCE_DIR}/bin")
     ENDIF()
-ELSE(UNIX)
+ELSE()
     find_library(LIB_STD_FS stdc++fs)
     IF(LIB_STD_FS_FOUND)
-        ExeImport("test" "dmcpp17;dmtest;${LIB_STD_FS_LIBRARIES}")
+        ExeImport("test" "dmcpp20;dmtest;${LIB_STD_FS_LIBRARIES}")
     ELSE(LIB_STD_FS_FOUND)
-        ExeImport("test" "dmcpp17;dmtest;stdc++fs")
+        ExeImport("test" "dmcpp20;dmtest;stdc++fs")
     ENDIF(LIB_STD_FS_FOUND)
-ENDIF(WIN32)
+ENDIF()
